@@ -1,35 +1,43 @@
 package lk.test.services;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
+import org.junit.Before;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.MockitoAnnotations;
 
 import lk.test.data.entities.User;
 import lk.test.repositories.UserRepo;
 
-@RunWith(MockitoJUnitRunner.class)
-public class UserService_UT {
+//@RunWith(MockitoJUnitRunner.class)
+class UserService_UT {
 
-	@InjectMocks
 	UserService userService;
 
 	@Mock
 	UserRepo userReopsitory;
 
+	@Before
+	public void init() {
+		MockitoAnnotations.initMocks(this);
+		userService = new UserService(userReopsitory);
+	}
+
 	@Test
 	public void getUserById() {
+//		User u = new User(4, "uf", "ul", "uful@mail.com");
+//		userService.addUser(u);
 
-		User u = new User(3, "uf", "ul", "uful@mail.com");
-		userReopsitory.save(u);
+		User user = userService.gerUserById(1);
+		assertNotNull(user);
 
-		User user = userService.gerUserById(3);
-		System.out.println("User :" + user.toString());
+//		when(userReopsitory.findById(2).get()).thenReturn(new User(2, "q", "qq", "qq@gmail.com"));
 
-		assertEquals("uf", user.getFirstName());
+//		User user = userService.gerUserById(3);
+//		System.out.println("User :" + user.toString());
+//
+//		assertEquals("uf", user.getFirstName());
 
 	}
 
