@@ -1,5 +1,8 @@
 package lk.test.services;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import lk.test.data.entities.User;
@@ -14,7 +17,7 @@ public class UserService {
 		this.userRepository = userRepository;
 	}
 
-	public User gerUserById(int userId) {
+	public User getUserById(int userId) {
 		return userRepository.findById(userId).get();
 	}
 
@@ -22,4 +25,16 @@ public class UserService {
 		return userRepository.save(user);
 	}
 
+	public void removeUser(User user) {
+//		userRepository.deleteById(userId);
+		userRepository.delete(user);
+	}
+
+	public List<User> findAllUsers() {
+		List<User> userList = new ArrayList<>();
+		userRepository.findAll().forEach(userList::add);
+		return userList;
+	}
+
+	
 }
