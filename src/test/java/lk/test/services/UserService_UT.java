@@ -29,8 +29,8 @@ class UserService_UT {
 //		User u = new User(4, "uf", "ul", "uful@mail.com");
 //		userService.addUser(u);
 
-		User user = userService.gerUserById(1);
-		assertNotNull(user);
+//		User user = userService.gerUserById(1);
+//		assertNotNull(user);
 
 //		when(userReopsitory.findById(2).get()).thenReturn(new User(2, "q", "qq", "qq@gmail.com"));
 
