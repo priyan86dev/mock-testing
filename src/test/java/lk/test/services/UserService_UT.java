@@ -72,4 +72,12 @@ class UserService_UT {
 
 	}
 
+	@Test
+	public void updateTest() {
+
+		User updatedUser = new User(1234, "up", "updat", "pd@gmail.com");
+		when(userReopsitory.save(updatedUser)).thenReturn(updatedUser);
+		assertEquals(updatedUser, userService.updateUser(updatedUser));
+	}
+
 }
