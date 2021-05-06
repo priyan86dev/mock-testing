@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import lk.test.data.entities.User;
@@ -24,14 +25,19 @@ public class UserAPIController {
 		this.userService = userService;
 	}
 
+	@RequestMapping("/")
+	public @ResponseBody String welcomeMsg() {
+		return "APP-STARTED";
+	}
+
 	@GetMapping("/{uId}")
 	public User getUser(@PathVariable(value = "uId") int userId) {
 		return userService.getUserById(userId);
 	}
 
 	@PostMapping("/save")
-	public void saveUser(@RequestBody User user) {
-		userService.addUser(user);
+	public User saveUser(@RequestBody User user) {
+		return userService.addUser(user);
 	}
 
 	@GetMapping("/all")
@@ -45,7 +51,7 @@ public class UserAPIController {
 	}
 
 	@PutMapping("/update")
-	public void updateUser(@RequestBody User user) {		
-		userService.updateUser(user);
+	public User updateUser(@RequestBody User user) {
+		return userService.updateUser(user);
 	}
 }

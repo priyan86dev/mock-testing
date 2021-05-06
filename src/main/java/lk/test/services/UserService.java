@@ -17,16 +17,15 @@ public class UserService {
 		this.userRepository = userRepository;
 	}
 
-	public User getUserById(int userId) {
-		return userRepository.findById(userId).get();
-	}
-
 	public User addUser(User user) {
 		return userRepository.save(user);
 	}
 
+	public User getUserById(int userId) {
+		return userRepository.findById(userId).get();
+	}
+
 	public void removeUser(User user) {
-//		userRepository.deleteById(userId);
 		userRepository.delete(user);
 	}
 
